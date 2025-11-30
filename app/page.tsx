@@ -1,5 +1,9 @@
-import Image from "next/image";
+"use client";
 
+import Image from "next/image";
+import { useEffect, useMemo, useState } from "react";
+
+// Class tracks displayed as cards in the "Classes" section
 const classTracks = [
   {
     title: "Salsa Roots",
@@ -8,7 +12,8 @@ const classTracks = [
       "From your first basic step to traveling turns, coached by Puerto Rican and Colombian pros who teach in plain American English.",
     schedule: "Tuesdays & Thursdays • 6:00 PM",
     focus: "Beginner friendly · Musicality · Partner work basics",
-    image: "/class-salsa.svg",
+    image:
+      "https://images.unsplash.com/photo-1508804185872-d7badad00f7d?auto=format&fit=crop&w=900&q=80",
   },
   {
     title: "Bachata Elevate",
@@ -17,7 +22,8 @@ const classTracks = [
       "Unlock smooth body movement, elegant patterns, and timing with mentors who dance on world stages across Mexico and the U.S.",
     schedule: "Wednesdays • 7:15 PM",
     focus: "Intermediate · Body movement · Social dance confidence",
-    image: "/class-bachata.svg",
+    image:
+      "https://images.unsplash.com/photo-1533104816931-20fa691ff6ca?auto=format&fit=crop&w=900&q=80",
   },
   {
     title: "Latin Fusion Performance",
@@ -26,10 +32,12 @@ const classTracks = [
       "Blend Afro-Caribbean rhythms with hip-hop lines. Perfect for corporate events, weddings, or simply owning the spotlight.",
     schedule: "Saturdays • 11:00 AM",
     focus: "Advanced · Team piece · Costuming guidance",
-    image: "/class-fusion.svg",
+    image:
+      "https://images.unsplash.com/photo-1464375117522-1311d6a5b81f?auto=format&fit=crop&w=900&q=80",
   },
 ];
 
+// Pricing tiers for membership options
 const pricing = [
   {
     name: "Starter",
@@ -66,6 +74,7 @@ const pricing = [
   },
 ];
 
+// Social proof quotes from U.S.-based dancers
 const testimonials = [
   {
     name: "Taylor M.",
@@ -87,19 +96,87 @@ const testimonials = [
   },
 ];
 
-const palette = [
-  { name: "Midnight Navy", value: "#0F1B2C" },
-  { name: "Sunset Coral", value: "#FF7A6A" },
-  { name: "Canyon Gold", value: "#F4C95D" },
-  { name: "Desert Sand", value: "#F6EFE7" },
-  { name: "Palm Teal", value: "#1FAFA3" },
+// Visual gallery to make the academy feel real
+const galleryShots = [
+  {
+    title: "Live social in Miami",
+    image:
+      "https://images.unsplash.com/photo-1545239351-1141bd82e8a6?auto=format&fit=crop&w=900&q=80",
+  },
+  {
+    title: "Footwork lab in Austin",
+    image:
+      "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=900&q=80",
+  },
+  {
+    title: "Partnering drills in Seattle",
+    image:
+      "https://images.unsplash.com/photo-1523419400524-2c5e5aa8c48b?auto=format&fit=crop&w=900&q=80",
+  },
 ];
 
+// FAQ entries rendered with semantic <details> for interactivity
+const faqs = [
+  {
+    question: "How beginner-friendly are the classes?",
+    answer:
+      "We start with rhythm drills and clear English counts. Coaches demo from multiple angles and keep group sizes capped so you get individual attention.",
+  },
+  {
+    question: "Do I need a partner?",
+    answer:
+      "No partner needed. We rotate often and always respect boundaries. You can also stick with one partner if you prefer.",
+  },
+  {
+    question: "Is there live-stream access?",
+    answer:
+      "Yes. Every membership includes a live-stream option plus on-demand practice clips filmed by our Latin American instructors.",
+  },
+];
+
+// Per-city timetables to show real-world logistics and provide interactivity
+const citySchedule = {
+  Miami: {
+    studio: "Wynwood Arts District",
+    sessions: ["Mon Salsa Foundations 6:00 PM", "Wed Bachata Elevate 7:15 PM", "Fri Social & Rueda 8:30 PM"],
+  },
+  Austin: {
+    studio: "South Congress Loft",
+    sessions: ["Tue Salsa On2 6:30 PM", "Thu Fusion Performance 7:30 PM", "Sat Beginner Lab 11:00 AM"],
+  },
+  Seattle: {
+    studio: "Capitol Hill Studio",
+    sessions: ["Mon Bachata Technique 7:00 PM", "Wed Salsa Spins 7:45 PM", "Sun Social Drills 5:00 PM"],
+  },
+};
+
 export default function Home() {
+  // Loading animation to simulate data fetch while assets settle
+  const [isLoading, setIsLoading] = useState(true);
+  const [selectedCity, setSelectedCity] = useState<keyof typeof citySchedule>("Miami");
+
+  useEffect(() => {
+    const timer = setTimeout(() => setIsLoading(false), 900);
+    return () => clearTimeout(timer);
+  }, []);
+
+  const timetable = useMemo(() => citySchedule[selectedCity], [selectedCity]);
+
   return (
     <div className="min-h-screen bg-gradient-to-b from-[#F6EFE7] via-white to-[#f1e6d9] text-[#132a3d]">
+      {/* Loading overlay for initial entrance animation */}
+      {isLoading && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-[#0F1B2C]/80 backdrop-blur">
+          <div className="flex flex-col items-center gap-3 text-[#f6efe7]">
+            <div className="h-16 w-16 animate-spin rounded-full border-4 border-[#FF7A6A]/40 border-t-[#FF7A6A]"></div>
+            <p className="text-sm font-semibold tracking-[0.2em] uppercase">Loading Cadencia</p>
+            <p className="text-xs text-[#e7d8c5]">Setting the rhythm…</p>
+          </div>
+        </div>
+      )}
+
       <header className="relative isolate overflow-hidden bg-gradient-to-br from-[#0F1B2C] via-[#132a3d] to-[#1a2d45] text-[#f6efe7]">
-        <div className="absolute inset-0 opacity-30">
+        <div className="absolute inset-0 opacity-30" aria-hidden>
           <Image
             src="/aurora-grid.svg"
             alt="Geometric background"
@@ -164,8 +241,8 @@ export default function Home() {
             <div className="absolute -bottom-12 -left-12 h-48 w-48 rounded-full bg-[#3fc1b6]/60 blur-3xl" aria-hidden></div>
             <div className="relative space-y-6">
               <Image
-                src="/hero-dancers.svg"
-                alt="Dancers in motion"
+                src="https://images.unsplash.com/photo-1523419400524-2c5e5aa8c48b?auto=format&fit=crop&w=1200&q=80"
+                alt="Couples dancing in studio"
                 width={720}
                 height={520}
                 className="w-full rounded-2xl border border-white/30 bg-white/10 shadow-lg"
@@ -186,6 +263,7 @@ export default function Home() {
       </header>
 
       <main className="mx-auto flex max-w-6xl flex-col gap-20 px-6 py-16 text-[#132a3d] sm:px-10 lg:py-24">
+        {/* Value proposition and credibility */}
         <section id="about" className="grid gap-10 lg:grid-cols-[1.3fr_1fr] lg:items-center">
           <div className="space-y-6">
             <p className="text-sm font-semibold uppercase tracking-[0.25em] text-[#30496b]">Why this academy</p>
@@ -216,15 +294,16 @@ export default function Home() {
           </div>
           <div className="relative overflow-hidden rounded-3xl border border-[#d9e1ed] bg-white shadow-xl">
             <Image
-              src="/studio-card.svg"
-              alt="Studio collage"
+              src="https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?auto=format&fit=crop&w=1200&q=80"
+              alt="Students stretching before class"
               width={640}
               height={520}
-              className="w-full"
+              className="h-full w-full object-cover"
             />
           </div>
         </section>
 
+        {/* Classes with imagery and logistics */}
         <section id="schedule" className="space-y-8">
           <div className="flex flex-wrap items-center justify-between gap-4">
             <div>
@@ -249,7 +328,7 @@ export default function Home() {
                   alt={track.title}
                   width={380}
                   height={220}
-                  className="w-full rounded-2xl border border-[#edf2f9] bg-[#F6EFE7]"
+                  className="h-52 w-full rounded-2xl border border-[#edf2f9] object-cover"
                 />
                 <div className="space-y-2">
                   <div className="flex items-center gap-3">
@@ -275,6 +354,57 @@ export default function Home() {
           </div>
         </section>
 
+        {/* Interactive city schedule selector */}
+        <section aria-labelledby="city-schedule" className="grid gap-8 rounded-3xl border border-[#d9e1ed] bg-white/70 p-8 shadow-sm lg:grid-cols-[1.2fr_1fr] lg:items-center">
+          <div className="space-y-4">
+            <p className="text-sm font-semibold uppercase tracking-[0.25em] text-[#30496b]">Where we teach</p>
+            <h2 id="city-schedule" className="text-3xl font-semibold text-[#0F1B2C] sm:text-4xl">
+              Select a city to see the weekly flow
+            </h2>
+            <p className="text-base text-[#243956]">
+              Latin American instructors are onsite in every city. Tap a location to preview what your week could look like.
+            </p>
+            <div className="flex flex-wrap gap-3" role="tablist" aria-label="City schedule tabs">
+              {(Object.keys(citySchedule) as Array<keyof typeof citySchedule>).map((city) => (
+                <button
+                  key={city}
+                  role="tab"
+                  aria-selected={selectedCity === city}
+                  className={`rounded-full px-4 py-2 text-sm font-semibold transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#FF7A6A] ${
+                    selectedCity === city
+                      ? "bg-[#FF7A6A] text-[#0F1B2C] shadow"
+                      : "border border-[#d9e1ed] bg-white text-[#243956] hover:border-[#132a3d]"
+                  }`}
+                  onClick={() => setSelectedCity(city)}
+                >
+                  {city}
+                </button>
+              ))}
+            </div>
+            <div className="rounded-2xl border border-[#d9e1ed] bg-[#f1e6d9] p-6 shadow-inner" role="tabpanel">
+              <p className="text-sm font-semibold text-[#243956]">{timetable.studio}</p>
+              <ul className="mt-3 space-y-3 text-sm text-[#132a3d]">
+                {timetable.sessions.map((session) => (
+                  <li key={session} className="flex items-center gap-2">
+                    <span className="inline-block h-2 w-2 rounded-full bg-[#1FAFA3]" aria-hidden></span>
+                    {session}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+          <div className="relative overflow-hidden rounded-3xl">
+            <Image
+              src="/map-coverage.svg"
+              alt="U.S. map coverage"
+              width={640}
+              height={520}
+              className="h-full w-full object-cover"
+            />
+          </div>
+        </section>
+
+        {/* Membership pricing */}
         <section id="pricing" className="space-y-6">
           <div className="flex flex-col gap-3">
             <p className="text-sm font-semibold uppercase tracking-[0.25em] text-[#30496b]">Memberships</p>
@@ -313,6 +443,7 @@ export default function Home() {
           </div>
         </section>
 
+        {/* Testimonials */}
         <section id="testimonials" className="space-y-8">
           <div className="flex flex-col gap-2">
             <p className="text-sm font-semibold uppercase tracking-[0.25em] text-[#30496b]">Reviews</p>
@@ -336,71 +467,64 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="grid gap-10 rounded-3xl border border-[#d9e1ed] bg-white p-8 shadow-sm lg:grid-cols-[1.4fr_1fr] lg:items-center">
-          <div className="space-y-4">
-            <p className="text-sm font-semibold uppercase tracking-[0.25em] text-[#30496b]">Color palette</p>
-            <h2 className="text-3xl font-semibold text-[#0F1B2C] sm:text-4xl">Sunset-inspired palette for the brand</h2>
-            <p className="text-base text-[#243956]">Use these hues across flyers, social posts, and studio signage to keep the vibe cohesive.</p>
-            <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-              {palette.map((tone) => (
-                <div
-                  key={tone.name}
-                  className="flex items-center gap-3 rounded-2xl border border-[#edf2f9] bg-[#F6EFE7] p-3"
-                >
-                  <span
-                  className="h-12 w-12 rounded-xl border border-[#edf2f9] shadow-inner"
-                  style={{ backgroundColor: tone.value }}
-                  ></span>
-                  <div>
-                    <p className="text-sm font-semibold text-[#132a3d]">{tone.name}</p>
-                    <p className="text-xs font-mono text-[#30496b]">{tone.value}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-          <div className="relative overflow-hidden rounded-3xl border border-[#d9e1ed] bg-gradient-to-br from-[#ffe1db] via-[#F6EFE7] to-[#d3f4ee] p-8 shadow-inner">
-            <Image
-              src="/palette-poster.svg"
-              alt="Brand poster"
-              width={520}
-              height={420}
-              className="w-full drop-shadow-lg"
-            />
-          </div>
-        </section>
-
-        <section className="grid gap-8 lg:grid-cols-[1.3fr_1fr] lg:items-center">
-          <div className="space-y-4">
-            <p className="text-sm font-semibold uppercase tracking-[0.25em] text-[#30496b]">Logistics</p>
-            <h2 className="text-3xl font-semibold text-[#0F1B2C] sm:text-4xl">Studios in motion across the U.S.</h2>
+        {/* Lifestyle gallery with real imagery */}
+        <section aria-labelledby="gallery" className="space-y-6">
+          <div className="flex flex-col gap-2">
+            <p className="text-sm font-semibold uppercase tracking-[0.25em] text-[#30496b]">Inside the studios</p>
+            <h2 id="gallery" className="text-3xl font-semibold text-[#0F1B2C] sm:text-4xl">
+              See how classes feel in real life
+            </h2>
             <p className="text-base text-[#243956]">
-              Flagship locations in Miami, Austin, and Seattle, plus pop-ups in Chicago and New York. Every membership includes virtual access when you travel.
+              All photos are from sessions led by our Latin American instructors in the U.S. Tap to expand captions.
             </p>
-            <div className="grid gap-4 sm:grid-cols-2">
-              <div className="rounded-2xl border border-[#d9e1ed] bg-white p-5 shadow-sm">
-                <p className="text-sm font-semibold text-[#243956]">U.S.-based support</p>
-                <p className="mt-2 text-sm text-[#30496b]">Text, email, or call a real person—no bots. We adjust for federal holidays.</p>
-              </div>
-              <div className="rounded-2xl border border-[#d9e1ed] bg-white p-5 shadow-sm">
-                <p className="text-sm font-semibold text-[#243956]">Latin social calendar</p>
-                <p className="mt-2 text-sm text-[#30496b]">Monthly socials curated by our Latin American faculty so you can practice in community.</p>
-              </div>
-            </div>
           </div>
-          <div className="relative overflow-hidden rounded-3xl border border-[#d9e1ed] bg-white shadow-xl">
-            <Image
-              src="/map-coverage.svg"
-              alt="U.S. map coverage"
-              width={640}
-              height={520}
-              className="w-full"
-            />
+          <div className="grid gap-6 lg:grid-cols-3">
+            {galleryShots.map((shot) => (
+              <figure
+                key={shot.title}
+                className="group relative overflow-hidden rounded-3xl border border-[#d9e1ed] bg-white shadow-sm"
+              >
+                <Image
+                  src={shot.image}
+                  alt={shot.title}
+                  width={420}
+                  height={320}
+                  className="h-64 w-full object-cover transition duration-300 group-hover:scale-105"
+                />
+                <figcaption className="flex items-center justify-between px-4 py-3 text-sm text-[#243956]">
+                  <span>{shot.title}</span>
+                  <span className="text-xs uppercase tracking-[0.15em] text-[#30496b]">View</span>
+                </figcaption>
+              </figure>
+            ))}
           </div>
         </section>
 
+        {/* FAQ section for clarity */}
+        <section aria-labelledby="faq" className="grid gap-6 rounded-3xl border border-[#d9e1ed] bg-white p-8 shadow-sm lg:grid-cols-[1fr_1.2fr] lg:items-start">
+          <div className="space-y-3">
+            <p className="text-sm font-semibold uppercase tracking-[0.25em] text-[#30496b]">Questions</p>
+            <h2 id="faq" className="text-3xl font-semibold text-[#0F1B2C] sm:text-4xl">How it works</h2>
+            <p className="text-base text-[#243956]">
+              Transparent policies, studio etiquette, and everything you need to feel prepared for day one.
+            </p>
+          </div>
+          <div className="space-y-4">
+            {faqs.map((item) => (
+              <details key={item.question} className="group rounded-2xl border border-[#d9e1ed] bg-[#f7f2ea] p-4 transition">
+                <summary className="flex cursor-pointer items-center justify-between text-sm font-semibold text-[#132a3d]">
+                  <span>{item.question}</span>
+                  <span className="text-[#FF7A6A] transition group-open:rotate-45">+</span>
+                </summary>
+                <p className="mt-3 text-sm text-[#30496b]">{item.answer}</p>
+              </details>
+            ))}
+          </div>
+        </section>
+
+        {/* Conversion-focused call-to-action */}
         <section className="relative overflow-hidden rounded-3xl bg-gradient-to-r from-[#0F1B2C] via-[#132a3d] to-[#0b4c46] p-10 text-[#f6efe7] shadow-xl">
-          <div className="absolute inset-0 opacity-30">
+          <div className="absolute inset-0 opacity-30" aria-hidden>
             <Image src="/aurora-grid.svg" alt="Grid" fill className="object-cover" />
           </div>
           <div className="relative flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
@@ -428,6 +552,43 @@ export default function Home() {
           </div>
         </section>
       </main>
+
+      {/* Footer with quick links and contact */}
+      <footer className="border-t border-[#d9e1ed] bg-[#f7f2ea] text-[#132a3d]">
+        <div className="mx-auto flex max-w-6xl flex-col gap-8 px-6 py-10 sm:px-10 lg:flex-row lg:justify-between">
+          <div className="space-y-3 max-w-md">
+            <div className="flex items-center gap-3">
+              <Image src="/aurora-mark.svg" alt="Cadencia mark" width={48} height={48} className="rounded-xl border border-[#d9e1ed] bg-white p-2" />
+              <div>
+                <p className="text-xs uppercase tracking-[0.25em] text-[#30496b]">Cadencia Dance Academy</p>
+                <p className="text-sm text-[#243956]">U.S.-based, Latin American-led salsa, bachata, and fusion classes.</p>
+              </div>
+            </div>
+            <p className="text-sm text-[#30496b]">
+              Call or text <a className="font-semibold text-[#0F1B2C] underline-offset-2 hover:underline" href="tel:+18332233623">(833) 223-3623</a> or email <a className="font-semibold text-[#0F1B2C] underline-offset-2 hover:underline" href="mailto:hello@cadenciadance.com">hello@cadenciadance.com</a>.
+            </p>
+          </div>
+          <div className="grid gap-6 sm:grid-cols-2">
+            <div className="space-y-2">
+              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#30496b]">Quick links</p>
+              <nav className="flex flex-col gap-2 text-sm text-[#243956]">
+                <a className="hover:text-[#0F1B2C]" href="#about">About</a>
+                <a className="hover:text-[#0F1B2C]" href="#schedule">Classes</a>
+                <a className="hover:text-[#0F1B2C]" href="#pricing">Pricing</a>
+                <a className="hover:text-[#0F1B2C]" href="#testimonials">Reviews</a>
+              </nav>
+            </div>
+            <div className="space-y-2">
+              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#30496b]">Visit us</p>
+              <ul className="space-y-2 text-sm text-[#243956]">
+                <li>Miami • Wynwood Arts District</li>
+                <li>Austin • South Congress Loft</li>
+                <li>Seattle • Capitol Hill Studio</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 }
