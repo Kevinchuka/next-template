@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 520" fill="none">
+  <rect width="640" height="520" rx="28" fill="#f6efe7"/>
+  <path d="M120 180c80-60 160-90 260-90 90 0 160 26 220 70" stroke="#0F1B2C" stroke-width="10" stroke-linecap="round" opacity="0.2"/>
+  <path d="M90 320c90-100 200-150 320-150 70 0 130 20 190 62" stroke="#1FAFA3" stroke-width="10" stroke-linecap="round" opacity="0.3"/>
+  <circle cx="180" cy="210" r="16" fill="#FF7A6A"/>
+  <circle cx="260" cy="260" r="16" fill="#1FAFA3"/>
+  <circle cx="360" cy="180" r="16" fill="#F4C95D"/>
+  <circle cx="470" cy="230" r="16" fill="#FF7A6A"/>
+  <circle cx="420" cy="310" r="16" fill="#1FAFA3"/>
+  <text x="150" y="440" fill="#0F1B2C" font-family="Arial, sans-serif" font-size="32" font-weight="700">Nationwide rhythm</text>
+  <text x="150" y="470" fill="#30496b" font-family="Arial, sans-serif" font-size="18">Miami • Austin • Seattle • Chicago pop-ups • Remote</text>
+</svg>

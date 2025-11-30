@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 520" fill="none">
+  <rect width="640" height="520" rx="28" fill="#0F1B2C"/>
+  <rect x="30" y="30" width="280" height="180" rx="18" fill="#FF7A6A" opacity="0.9"/>
+  <rect x="330" y="40" width="280" height="200" rx="24" fill="#1FAFA3" opacity="0.9"/>
+  <rect x="60" y="240" width="520" height="230" rx="28" fill="#f6efe7" opacity="0.9"/>
+  <path d="M90 360c120-100 220-146 340-146 60 0 110 14 170 50" stroke="#0F1B2C" stroke-width="10" stroke-linecap="round" opacity="0.3"/>
+  <circle cx="200" cy="120" r="34" fill="#f6efe7"/>
+  <circle cx="430" cy="120" r="40" fill="#f6efe7"/>
+  <circle cx="500" cy="360" r="70" fill="#FF7A6A" opacity="0.2"/>
+  <circle cx="200" cy="360" r="90" fill="#1FAFA3" opacity="0.2"/>
+  <text x="120" y="405" fill="#0F1B2C" font-family="Arial, sans-serif" font-size="44" font-weight="700">Cadencia Studios</text>
+  <text x="120" y="440" fill="#30496b" font-family="Arial, sans-serif" font-size="20">Latin faculty • U.S. schedule • Hybrid access</text>
+</svg>

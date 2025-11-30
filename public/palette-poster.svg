@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 420" fill="none">
+  <rect width="520" height="420" rx="36" fill="#f6efe7"/>
+  <rect x="50" y="40" width="420" height="90" rx="22" fill="#0F1B2C"/>
+  <text x="70" y="100" fill="#f6efe7" font-family="Arial, sans-serif" font-size="32" font-weight="700">Cadencia Color Study</text>
+  <g transform="translate(60 170)">
+    <rect width="90" height="90" rx="20" fill="#0F1B2C"/>
+    <text x="0" y="120" fill="#0F1B2C" font-size="12" font-family="Arial">Midnight Navy</text>
+    <text x="0" y="136" fill="#30496b" font-size="11" font-family="Arial">#0F1B2C</text>
+  </g>
+  <g transform="translate(170 170)">
+    <rect width="90" height="90" rx="20" fill="#FF7A6A"/>
+    <text x="0" y="120" fill="#0F1B2C" font-size="12" font-family="Arial">Sunset Coral</text>
+    <text x="0" y="136" fill="#30496b" font-size="11" font-family="Arial">#FF7A6A</text>
+  </g>
+  <g transform="translate(280 170)">
+    <rect width="90" height="90" rx="20" fill="#F4C95D"/>
+    <text x="0" y="120" fill="#0F1B2C" font-size="12" font-family="Arial">Canyon Gold</text>
+    <text x="0" y="136" fill="#30496b" font-size="11" font-family="Arial">#F4C95D</text>
+  </g>
+  <g transform="translate(390 170)">
+    <rect width="90" height="90" rx="20" fill="#1FAFA3"/>
+    <text x="0" y="120" fill="#0F1B2C" font-size="12" font-family="Arial">Palm Teal</text>
+    <text x="0" y="136" fill="#30496b" font-size="11" font-family="Arial">#1FAFA3</text>
+  </g>
+  <path d="M70 320h380" stroke="#0F1B2C" stroke-width="6" stroke-linecap="round" opacity="0.16"/>
+  <text x="70" y="350" fill="#30496b" font-family="Arial, sans-serif" font-size="18">Designed for flyers, socials, and studio lightboxes.</text>
+</svg>
