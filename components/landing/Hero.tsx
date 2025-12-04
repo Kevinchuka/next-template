@@ -1,6 +1,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Image from "next/image";
+import { PLACEHOLDER_IMAGES } from "@/lib/placeholders";
 import { MagneticButton } from "./MagneticButton";
 import { useReveal } from "./useReveal";
 
@@ -68,9 +70,16 @@ export function Hero() {
           <div className="absolute -left-6 -top-6 h-16 w-16 rounded-full bg-teal-400/30 blur-xl" />
           <div className="absolute -bottom-10 -right-8 h-28 w-28 rounded-full bg-purple-400/30 blur-2xl" />
           <div className="relative overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-br from-slate-800/80 via-slate-900 to-black shadow-[0_30px_120px_rgba(0,0,0,0.45)]">
+            <Image
+              src={PLACEHOLDER_IMAGES.hero}
+              alt="Futuristic gamer workspace illuminated with neon lights"
+              width={1200}
+              height={720}
+              className="h-full w-full min-h-[360px] object-cover opacity-80"
+              priority
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent" />
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_30%,rgba(45,212,191,0.25),transparent_35%),radial-gradient(circle_at_80%_80%,rgba(168,85,247,0.22),transparent_35%),linear-gradient(120deg,rgba(45,212,191,0.35),transparent_45%,rgba(168,85,247,0.3))]" />
-            <div className="relative h-full w-full min-h-[360px] bg-[conic-gradient(at_30%_30%,rgba(45,212,191,0.5),rgba(168,85,247,0.45),rgba(45,212,191,0.5))] opacity-80" />
-            <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black/10" />
             <div className="absolute bottom-6 left-6 right-6 flex items-center justify-between rounded-2xl border border-white/10 bg-white/5 px-4 py-3 backdrop-blur">
               <div className="text-sm text-slate-200">
                 <p className="font-semibold text-white">Live Drop Rates</p>
