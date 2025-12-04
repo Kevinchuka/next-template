@@ -1,0 +1,4 @@
+# Ensure placeholder assets treated as binary so commits don't fail on diff/merge
+public/placeholders/* binary
+public/placeholders/*.png binary
+public/placeholders/*.jpg binary
